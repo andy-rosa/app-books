@@ -1,0 +1,36 @@
+.bookCard {
+  padding: 20px;
+  background-color: #f3f2f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  height: 90%;
+  transition: all 0.2s ease-in-out;
+}
+
+.bookCard:hover {
+  box-shadow: var(--shadow);
+}
+
+.category {
+  text-decoration: underline;
+  color: #bdbbbb;
+}
+
+.description {
+  color: #bdbbbb;
+}
+
+.bookCard img {
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  align-self: center;
+}
+
+.link {
+  text-decoration: none;
+  color: #000;
+}
+
+.title {
+  margin: 2px 0;
+}

@@ -1,0 +1,15 @@
+.header {
+    background-image:
+            linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+            url(https://wallpapercrafter.com/desktop/274147-book-open-book-read-and-page-hd.jpg);
+    background-size: cover;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.title {
+    color: #fff;
+    font-size: 46px;
+    text-align: center;
+    margin: 0;
+}

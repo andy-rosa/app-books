@@ -1,0 +1,13 @@
+.title {
+    margin-top: 60px;
+    font-size: 36px;
+    text-align: center;
+}
+
+.gridWrapper {
+    display: grid;
+    margin: 0 auto;
+    gap: 16px;
+    grid-template-columns: repeat(4, 1fr);
+    width: 1200px;
+}
