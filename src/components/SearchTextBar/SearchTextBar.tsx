@@ -1,5 +1,4 @@
 import React, {ChangeEvent, FC} from 'react';
-import classNames from "classnames";
 import cls from "./SearchTextBar.module.css";
 import { ReactComponent as SearchIcon } from './icons/search.svg'
 import {useDispatch} from 'react-redux';
@@ -26,15 +25,15 @@ const SearchTextBar: FC = () => {
             <input
                 type="text"
                 id="searchTerm"
-                minLength={1}
+                required
                 defaultValue={searchText}
                 onChange={handleInputChange}
-                className={classNames(cls.search)}
+                className={cls.search}
                 placeholder={'Search for book title'}
             />
             <button
                 type="submit"
-                className={classNames(cls.btn)}
+                className={cls.btn}
             >
                 <SearchIcon />
             </button>

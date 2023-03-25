@@ -1,11 +1,7 @@
-import React, {ChangeEvent, FormEvent, useState} from 'react';
-import classNames from "classnames";
+import React, {FormEvent} from 'react';
 import cls from './Form.module.css';
 import SearchTextBar from "../SearchTextBar/SearchTextBar";
 import {useAppSelector} from "../../hooks/useAppSelector";
-import {useDispatch} from "react-redux";
-import {useLazySearchBooksQuery} from "../../app/api/books/books.api";
-import {setSearchText} from "../../app/providers/store/slices/SearchFormSlice";
 import SearchSortBar from "../SearchSortBar/SearchSortBar";
 import SearchFilterBar from "../SearchFilterBar/SearchFilterBar";
 
@@ -20,7 +16,7 @@ const Form = ({handleSubmit}: FormProps) => {
     return (
         <form
             onSubmit={handleSubmit}
-            className={classNames(cls.form)}
+            className={cls.form}
         >
             <SearchTextBar />
             <SearchFilterBar />

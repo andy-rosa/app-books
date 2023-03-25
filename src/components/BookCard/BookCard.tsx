@@ -1,7 +1,6 @@
 import React from 'react';
 import {VolumeInfo} from "../../models/types/SearchResponse";
 import cls from './BookCard.module.css'
-import classNames from "classnames";
 import {generatePath, Link} from "react-router-dom";
 import { RoutePath } from '../../app/providers/routers/config/routerConfig';
 
@@ -11,7 +10,7 @@ const BookCard = ({imageLinks, title, authors, categories, id}: BookCardProps) =
 
     return (
         <Link to={generatePath(RoutePath.book, {id})} className={cls.link}>
-            <article className={classNames(cls.bookCard)}>
+            <article className={cls.bookCard}>
                 {
                     <img
                         alt={`cover book ${title}`}
