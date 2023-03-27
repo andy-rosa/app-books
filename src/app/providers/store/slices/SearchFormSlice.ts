@@ -31,8 +31,9 @@ const bookSearchFormSlice = createSlice({
             state.sort = action.payload;
         },
         setStartIndex: (state, action: PayloadAction<boolean>) => {
-            if (action) state.startIndex += MAX_BOOKS_FOR_REQUEST;
-            else state.startIndex = 0;
+            action.payload
+                ? state.startIndex += MAX_BOOKS_FOR_REQUEST
+                : state.startIndex = 0;
         }
     },
 });

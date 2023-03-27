@@ -2,15 +2,13 @@ import React, {ChangeEvent} from 'react';
 import {setSearchSort, SortType} from "../../app/providers/store/slices/SearchFormSlice";
 import {useDispatch} from "react-redux";
 import cls from './SearchSortBar.module.css'
-
-interface SortBarProps {
-    currentValue: SortType
-}
+import {useAppSelector} from "../../hooks/useAppSelector";
 
 const optionsValue: SortType[] = ['relevance', 'newest']
 
-const SearchSortBar = ({currentValue}: SortBarProps) => {
+const SearchSortBar = () => {
     const dispatch = useDispatch()
+    const { sort } = useAppSelector(state => state.bookSearchForm)
 
     const handleSortChange = (evt: ChangeEvent<HTMLSelectElement>) => {
         dispatch(setSearchSort(evt.target.value as SortType))
@@ -26,7 +24,7 @@ const SearchSortBar = ({currentValue}: SortBarProps) => {
             </label>
         <select
             onChange={handleSortChange}
-            defaultValue={currentValue}
+            defaultValue={sort}
             name={'sort'}
         >
             {

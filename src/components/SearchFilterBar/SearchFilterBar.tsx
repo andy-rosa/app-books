@@ -2,6 +2,7 @@ import React, {ChangeEvent} from 'react';
 import {useDispatch} from "react-redux";
 import {setSearchCategory} from "../../app/providers/store/slices/SearchFormSlice";
 import cls from "./SearchFilterBar.module.css";
+import {useAppSelector} from "../../hooks/useAppSelector";
 
 const optionsFilterValue = [
     'all',
@@ -16,6 +17,7 @@ const optionsFilterValue = [
 const SearchFilterBar = () => {
     const dispatch = useDispatch();
 
+    const { category } = useAppSelector(state => state.bookSearchForm)
     const handleFilterChange = (evt: ChangeEvent<HTMLSelectElement>) => {
         dispatch(setSearchCategory(evt.target.value))
     }
@@ -30,7 +32,7 @@ const SearchFilterBar = () => {
             </label>
         <select
             onChange={handleFilterChange}
-            defaultValue={'all'}
+            defaultValue={category}
             name={'categories'}
         >
             {optionsFilterValue.map((filter) => <option

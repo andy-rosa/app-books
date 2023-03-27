@@ -10,8 +10,6 @@ interface FormProps {
 }
 
 const Form = ({handleSubmit}: FormProps) => {
-    const searchFormState = useAppSelector(state => state.bookSearchForm)
-    const { sort } = searchFormState
 
     return (
         <form
@@ -20,7 +18,7 @@ const Form = ({handleSubmit}: FormProps) => {
         >
             <SearchTextBar />
             <SearchFilterBar />
-            <SearchSortBar currentValue={sort} />
+            <SearchSortBar />
         </form>
     );
 };

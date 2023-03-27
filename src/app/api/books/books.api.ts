@@ -13,7 +13,6 @@ export const booksApi = appApi.injectEndpoints({
                         : search.searchText}`,
                     startIndex: search.startIndex,
                     orderBy: search.sort,
-                    key: process.env.REACT_APP_API_KEY,
                     maxResults: MAX_BOOKS_FOR_REQUEST
                 }
             }),

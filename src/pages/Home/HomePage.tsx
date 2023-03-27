@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import cls from "./HomePage.module.css";
 import BookCard from "../../components/BookCard/BookCard";
 import {useAppSelector} from "../../hooks/useAppSelector";
@@ -6,22 +6,34 @@ import {useLazySearchBooksQuery} from "../../app/api/books/books.api";
 import {Loader} from "../../components/Loader/Loader";
 import {useDispatch} from "react-redux";
 import {setStartIndex} from "../../app/providers/store/slices/SearchFormSlice";
+import {SearchItem} from "../../models/types/SearchResponse";
 
+//TODO: доделать логику сортировки и верстку
 const HomePage = () => {
     const dispatch = useDispatch();
     const searchFormState = useAppSelector(state => state.bookSearchForm)
     const { category, searchText, sort, startIndex } = searchFormState
-    const [search, setSearch] = useState(searchText);
+
+    const searchRef = useRef<string | undefined>();
+    const categoryRef = useRef<typeof category>();
+    const sortRef = useRef<typeof sort>();
 
     const [fetchSearch, {data, isLoading}] = useLazySearchBooksQuery()
 
-    const handleNextBooksClick = () => {
-        if (search === searchText) {
-            dispatch(setStartIndex(true));
+    const [books, setBooks] = useState<SearchItem[]>([])
+
+    useEffect(() => {
+        if (searchText === searchRef.current) {
+            if (data?.items) setBooks(prev => [...prev,...data.items])
         } else {
-            setSearch(searchText)
-            dispatch(setStartIndex(false));
+            if (data?.items) setBooks(data?.items)
         }
+    }, [data])
+
+    const handleNextBooksClick = () => {
+        dispatch(setStartIndex(searchRef.current === searchText));
+        fetchSearch(searchFormState)
+        searchRef.current = searchText
     };
 
     useEffect(() => {
@@ -41,14 +53,14 @@ const HomePage = () => {
             }
             <div className={cls.gridWrapper}>
                 {
-                    data &&
-                    data.items?.map(
-                        ({id, volumeInfo}) => (<BookCard
+                    books &&
+                    books.map(
+                        ({id, volumeInfo}, index) => (<BookCard
                             title={volumeInfo.title}
                             categories={volumeInfo.categories}
                             imageLinks={volumeInfo.imageLinks}
                             authors={volumeInfo.authors}
-                            key={id}
+                            key={id + index}
                             id={id}
                         />)
                     )
